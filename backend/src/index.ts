@@ -4,19 +4,16 @@
 
 import express, { Express, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 import itemsRouter from "./routes/items";
 import cors from "cors";
+import connectDB from "./config/database";
+import { graphqlHTTP } from "express-graphql";
+import schema from "./graphql/schemas";
+import resolvers from "./graphql/resolvers";
 
 dotenv.config();
 const port = process.env.PORT || 3000;
-
-mongoose
-  .connect(
-    "mongodb+srv://db-task-user:BYun1024@sandbox-db-tim.itb8z3k.mongodb.net/?retryWrites=true&w=majority&appName=sandbox-db-tim"
-  )
-  .then(() => console.log("Connected to MongoDB..."))
-  .catch((err) => console.error("Could not connect to MongoDB..."));
+connectDB();
 // ===================================================
 // SETUP
 // ===================================================
@@ -24,6 +21,14 @@ mongoose
 const app: Express = express();
 app.use(cors());
 app.use(express.json());
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: schema,
+    rootValue: resolvers,
+    graphiql: true, // Enable GraphiQL for testing
+  })
+);
 
 // ===================================================
 // ROUTES

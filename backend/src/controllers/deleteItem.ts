@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { Item } from "../models/Items";
 
 interface DeleteItemRequest extends Request {
   params: {
@@ -15,8 +14,7 @@ const deleteItem = async (
   const { _id } = req.params;
 
   try {
-    await Item.remove({ _id });
-    res.status(204).json({ message: "Item deleted" });
+    //mongoDB Logic
   } catch (error) {
     console.error(error);
     next(error);

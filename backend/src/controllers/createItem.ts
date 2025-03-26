@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { ItemType } from "../types/itemTypes";
-import { Item } from "../models/Items";
 import { v4 as uuidv4 } from "uuid";
 
 interface CreateItemRequest extends Request {
@@ -24,8 +23,7 @@ const createItem = async (
   };
 
   try {
-    const savedTask = await Item.create(newItem).save();
-    res.status(201).json(savedTask);
+    //mongoDB Logic
   } catch (error) {
     console.error(error);
     next(error);
