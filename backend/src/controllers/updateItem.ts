@@ -32,13 +32,9 @@ const updateItem = async (
       name,
       price,
     };
-    try {
-      const savedTask = await itemToUpdate.update(newItem).save();
-      res.status(201).json(savedTask);
-    } catch (error) {
-      console.error(error);
-      next(error);
-    }
+
+    const savedTask = await itemToUpdate.update(newItem).save();
+    res.status(201).json(savedTask);
   } catch (error) {
     console.error(error);
     next(error);
