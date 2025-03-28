@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import Menu from "..";
-import { ItemArrayOptions, ItemArrayType } from "../../../types";
+import { ItemArrayOptions } from "../../../types";
 
 describe("Menu Component", () => {
   it("renders without crashing", () => {
