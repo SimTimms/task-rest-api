@@ -1,4 +1,4 @@
-import { ItemArrayOptions } from "../../types";
+import { ItemArrayOptions } from "../../../types";
 
 export const defaultState = {
   itemArray: [],

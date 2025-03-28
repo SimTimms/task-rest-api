@@ -1,6 +1,6 @@
-import Button from "../../../components/Button";
-import getItems from "../utils/getItems";
-import { ItemArrayOptions, ItemArrayType } from "../../../types";
+import Button from "../Button";
+import getItems from "../../pages/Crud/utils/getItems";
+import { ItemArrayOptions, ItemArrayType } from "../../types";
 
 interface MenuProps {
   setItemArray: React.Dispatch<React.SetStateAction<ItemArrayType>>;

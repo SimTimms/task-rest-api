@@ -1,3 +1,3 @@
-import Crud from "./Crud/Crud";
+import Crud from "./Crud";
 
 export { Crud };
