@@ -10,6 +10,8 @@ export default defineConfig({
     exclude: [...configDefaults.exclude], // Exclude unnecessary files.
     coverage: {
       reporter: ["text", "json", "html"],
+      enabled: true,
+      exclude: ["./backend", "*.config.*", "./dist"], // Exclude the ./backend folder and .config files from coverage.
     },
     setupFiles: ["./setupTests.ts"],
   },
