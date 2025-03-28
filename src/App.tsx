@@ -1,11 +1,11 @@
-import Crud from "./pages/Crud/Crud";
 import "./App.css";
+import { Crud } from "./pages";
 
 const App: React.FC = () => {
   return (
-    <>
-      <Crud />
-    </>
+    <main className="app-main">
+      <Crud data-testid="crud-component" />
+    </main>
   );
 };
 

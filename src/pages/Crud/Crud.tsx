@@ -13,15 +13,17 @@ function Crud() {
   const [itemArray, setItemArray] = useState<ItemArrayType>(defaultState);
 
   return (
-    <main>
-      <section>
+    <>
+      <header>
         <h1>CRUD</h1>
+      </header>
+      <nav>
         <Menu setItemArray={setItemArray} itemArray={itemArray} />
-      </section>
+      </nav>
       <section className="item-list">
         <ItemList itemArray={itemArray} />
       </section>
-    </main>
+    </>
   );
 }
 

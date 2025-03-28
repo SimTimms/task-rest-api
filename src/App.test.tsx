@@ -1,15 +1,23 @@
 // Import the necessary libraries
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
-import App from "./App"; // Ensure App is properly exported as a React component
+import { describe, it, expect, vi } from "vitest";
+import App from "./App";
 
-// Describe the test suite
+// Mock the Crud component
+vi.mock("./pages", () => ({
+  Crud: () => <div data-testid="crud-component">Mocked Crud Component</div>,
+}));
+
 describe("App Component", () => {
-  it("should display the correct text", () => {
-    // Render the App component
-    render(<App />);
+  it("renders without crashing", () => {
+    const { container } = render(<App />);
+    expect(container).toBeInTheDocument();
+  });
 
-    // Assert that the text "Hello, world!" is in the document
-    expect(screen.getByText("CRUD")).toBeInTheDocument();
+  it("renders Crud component within the main element", () => {
+    render(<App />);
+    const mainElement = screen.getByRole("main");
+    const crudComponent = screen.getByTestId("crud-component");
+    expect(mainElement).toContainElement(crudComponent);
   });
 });
