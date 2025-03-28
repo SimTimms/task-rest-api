@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import Button from "../";
 
-describe("Button Component", () => {
+describe("Menu Component", () => {
   it("renders without crashing", () => {
     const { container } = render(<Button text="Test" callback={() => {}} />);
     expect(container).toBeInTheDocument();

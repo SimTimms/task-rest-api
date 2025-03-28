@@ -1,23 +1,38 @@
 import Button from "../Button";
-import getItems from "../../pages/Crud/utils/getItems";
-import { ItemArrayOptions, ItemArrayType } from "../../types";
+import fetchItemsAndUpdateState from "../../pages/Crud/utils/fetchItemsAndUpdateState";
+import { ItemArrayOptions, views, ItemContextType } from "../../types";
+import ItemContext from "../../context/ItemContext";
+import { useContext } from "react";
+import changePage from "./utils/changePage";
 
-interface MenuProps {
-  setItemArray: React.Dispatch<React.SetStateAction<ItemArrayType>>;
-  itemArray: ItemArrayType;
-}
+const Menu: React.FC = () => {
+  const contextValue = useContext(ItemContext) as ItemContextType;
+  if (!contextValue) {
+    throw new Error("ItemContext must be used within a valid provider.");
+  }
 
-const Menu: React.FC<MenuProps> = ({ setItemArray, itemArray }) => {
   return (
     <>
-      <Button text="Create" callback={() => console.log("Create action")} />
+      <Button
+        text="Create"
+        callback={() => changePage(views.Create, contextValue)}
+      />
       <Button
         text="Read"
-        callback={() => getItems(setItemArray)}
-        disabled={itemArray.fetchResult === ItemArrayOptions.Fetching}
+        callback={() => fetchItemsAndUpdateState(contextValue.setItemArray)}
+        disabled={
+          contextValue.itemArray.fetchResult === ItemArrayOptions.Fetching
+        }
       />
-      <Button text="Update" callback={() => console.log("Update action")} />
-      <Button text="Delete" callback={() => console.log("Delete action")} />
+
+      <Button
+        text="Update"
+        callback={() => changePage(views.Update, contextValue)}
+      />
+      <Button
+        text="Delete"
+        callback={() => changePage(views.Delete, contextValue)}
+      />
     </>
   );
 };

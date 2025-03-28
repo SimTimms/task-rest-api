@@ -4,6 +4,7 @@
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
+    
   }
 ,
   "references": [
